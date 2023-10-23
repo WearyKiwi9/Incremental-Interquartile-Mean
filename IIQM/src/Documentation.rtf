@@ -1,0 +1,59 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2757
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs40 \cf0 Refactorings:\
+
+\fs32 1. Error Handling:\
+	\'95	Improvement Process: Introduced a custom error type 
+\fs28 IIQMError
+\fs32  to categorize and specify different types of errors.\
+	\'95	Reasoning: Increases code robustness and user-friendliness.\
+	\'95	Benefit for Future Developers: Easier understanding and debugging of potential issues and errors.\
+2. Code Modularization:\
+	\'95	Improvement Process: Broke down monolithic methods into smaller, well-named functions.\
+	\'95	Reasoning: Increases code readability and maintainability.\
+	\'95	Benefit for Future Developers: Each function\'92s purpose and operation is clearer, enhancing understandability and testability.\
+3. Parameter Types and Method Signatures:\
+	\'95	Improvement Process: Updated method signatures for error propagation and return types.\
+	\'95	Reasoning: Enhances code robustness.\
+	\'95	Benefit for Future Developers: Clearer expectations of functions\'92 inputs, outputs, and errors.\
+4. Variable Names:\
+	\'95	Improvement Process: Updated to descriptive and self-explanatory names.\
+	\'95	Reasoning: Improves readability.\
+	\'95	Benefit for Future Developers: Reduces cognitive load for code comprehension.\
+5. Removed Forced Unwrapping:\
+	\'95	Improvement Process: Eliminated forced unwrapping for code safety.\
+	\'95	Reasoning: Reduces runtime error risks.\
+	\'95	Benefit for Future Developers: Enhances code stability and reliability.\
+6. Comments:\
+	\'95	Improvement Process: Added comments for code clarity.\
+	\'95	Reasoning: Conveys code intent and logic.\
+	\'95	Benefit for Future Developers: Assists in quick comprehension and maintenance.\
+7. Test Cases:\
+	\'95	Improvement Process: Introduced unit test cases to validate the functionality of the code.\
+	\'95	Reasoning: Test cases ensure that the code works as expected and helps in identifying bugs and issues. It verifies file reading, IIQM calculations, error handling, and performance.\
+	\'95	Benefit for Future Developers: Provides a safety net and documentation. Developers can make changes or additions with confidence, knowing they\'92ll quickly identify if something breaks. It also serves as a form of documentation on how the functions are expected to behave.\
+8. Code Formatting and Style:\
+	\'95	Improvement Process: Adopted a consistent coding style and formatting throughout the codebase.\
+	\'95	Reasoning: A consistent code style makes the code easier to read and understand.\
+	\'95	Benefit for Future Developers: Easier to read code, less cognitive load when navigating through the code.\
+\
+
+\fs40 Optimizations: Improved Data Insertion
+\fs32 \
+1. Explain how your optimization works and why you took this approach\
+	The core optimization strategy I implemented was improving the data insertion process. Initially, the code sorted the entire dataset every time a new element was added, which has a time complexity of O(n log n) per insertion. This approach was not efficient, especially as the size of the dataset grows. To address this, I utilized a binary search method to find the correct position for the new element, ensuring the dataset remains in sorted order while reducing the need for full array sorting with every new element addition. The binary search operates with a time complexity of O(log n) to find the insertion point, and then O(n) for inserting the element, offering a performance improvement.\
+	This approach was chosen due to its balance of improved performance, manageable complexity, and alignment with the project's time constraints. It provided a significant performance boost while maintaining code readability and manageability, setting a solid foundation for any further optimizations.\
+\
+2. Would your approach continue to work if there were millions or billions of input values?\
+	The binary search approach for data insertion would continue to function with larger datasets containing millions or billions of values. However, the performance may degrade due to the O(n) time complexity associated with inserting elements. As the dataset grows, the time taken for each insertion operation increases, which could lead to performance issues.\
+	In scenarios with such large datasets, transitioning to more efficient data structures like self-balancing binary search trees could be considered to maintain performance efficiency. This augmented data structure can maintain a sorted order while allowing for faster insertions and deletions, which would be crucial for handling very large datasets efficiently.\
+\
+3. Would your approach still be efficient if you needed to store the intermediate state between each IQM calculation in a data store? If not, how would you change it to meet this requirement?\
+	Storing intermediate states between each IQM calculation adds an additional layer of complexity. The current approach of binary search insertion could still function, but the efficiency may be affected due to the overhead of storing and retrieving intermediate states from a data store. The time complexity for inserting elements would remain the same, but the overall process could become slower due to the data store operations.\
+	To address this requirement, an incremental algorithm that can update the IQM in constant time or logarithmic time as new data is added would be more suitable. Such an approach would minimize the need for recalculating the IQM from scratch for each new data point, thus reducing the overhead associated with storing and retrieving intermediate states.\
+	Implementing an incremental algorithm, along with leveraging a more efficient data structure, could provide a robust solution that meets the requirement of storing intermediate states efficiently, especially in scenarios with very large datasets. This approach would set a strong foundation for a system capable of handling the increased complexity while maintaining optimized performance. While the further optimizations identified are promising, they introduce a higher level of complexity. Implementing and thoroughly testing these optimizations would likely extend beyond the allocated project timeline. The goal was to balance between optimization, code readability, and the project's time constraints to deliver a reliable and improved solution promptly.}
